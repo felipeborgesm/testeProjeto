@@ -8,10 +8,16 @@ import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import vuetify from 'vite-plugin-vuetify'
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    VueRouter({
+      routesFolder: ['./src/pages'],
+    }),
+
     vue(),
     vueJsx(),
 
@@ -21,9 +27,6 @@ export default defineConfig({
         configFile: 'src/styles/variables/_vuetify.scss',
       },
     }),
-    Pages({
-      dirs: ['./src/pages'],
-    }),
     Layouts({
       layoutsDirs: './src/layouts/',
     }),
@@ -32,7 +35,7 @@ export default defineConfig({
       dts: true,
     }),
     AutoImport({
-      imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/math', 'pinia'],
+      imports: ['vue', '@vueuse/core', '@vueuse/math', 'pinia', VueRouterAutoImports],
       vueTemplate: true,
     }),
 
