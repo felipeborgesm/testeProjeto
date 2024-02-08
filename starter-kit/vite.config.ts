@@ -14,9 +14,6 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    VueRouter({
-      routesFolder: ['./src/pages'],
-    }),
 
     vue(),
     vueJsx(),
@@ -27,8 +24,13 @@ export default defineConfig({
         configFile: 'src/styles/variables/_vuetify.scss',
       },
     }),
+    VueRouter({
+      routesFolder: ['./src/pages'],
+      extensions: ['.vue'],
+      dts: './typed-router.d.ts',
+    }),
     Layouts({
-      layoutsDirs: './src/layouts/',
+      layoutsDirs: './src/layouts',
     }),
     Components({
       dirs: ['src/@core/components', 'src/views/demos'],
